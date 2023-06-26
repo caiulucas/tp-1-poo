@@ -13,7 +13,7 @@ private:
   string senha;
 
 public:
-  Pessoa(string = "");
+  Pessoa(string nome = "", string nome_usuario = "", string senha = "");
 
   virtual ~Pessoa();
 

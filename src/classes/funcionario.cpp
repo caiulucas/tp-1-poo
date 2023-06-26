@@ -1,8 +1,11 @@
+
+#include <iostream>
 #include "funcionario.h"
 
 using namespace std;
 
-Funcionario::Funcionario(string tipo, string funcao, double salario_hora )
+Funcionario::Funcionario(string nome, string nome_usuario, string senha, string tipo, string funcao, double salario_hora)
+    : Pessoa(nome, nome_usuario, senha)
 {
   this->tipo = tipo;
   this->funcao = funcao;
@@ -64,4 +67,16 @@ void Funcionario::mostrar_salario()
 
 void Funcionario::mostrar_vendas()
 {
+}
+
+ostream &operator<<(ostream &out, const Funcionario &obj)
+{
+  out << "\x1b[1m\x1b[34m" << obj.get_nome() << "\x1b[0m" << endl
+      << "\t"
+      << "\x1b[1mUsuário:\x1b[0m " << obj.get_nome_usuario() << endl
+      << "\t"
+      << "\x1b[1mTipo de funcionário:\x1b[0m " << obj.get_tipo() << endl
+      << "\t"
+      << "\x1b[1mFunção:\x1b[0m " << obj.get_funcao();
+  return out;
 }

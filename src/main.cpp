@@ -6,10 +6,10 @@ using namespace std;
 
 int main()
 {
-  Funcionario *funcionario = new Funcionario("Funcionario", "Funcionario", 0.0);
-  Chefe *chefe = new Chefe(0.0);
+  Funcionario *funcionario = new Funcionario("Camilla", "jacaroa", "123@321", "funcionario", "vendedora", 43242.0);
+  // Chefe *chefe = new Chefe(0.0);
 
-  cout << funcionario->get_funcao() << endl;
-  cout << chefe->get_salario_fixo() << endl;
+  cout << *funcionario << endl;
+  // cout << chefe->get_salario_fixo() << endl;
   return EXIT_SUCCESS;
 }

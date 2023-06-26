@@ -2,9 +2,11 @@
 
 using namespace std;
 
-Pessoa::Pessoa(string nome)
+Pessoa::Pessoa(string nome, string nome_usuario, string senha)
 {
   this->nome = nome;
+  this->nome_usuario = nome_usuario;
+  this->senha = senha;
 }
 
 Pessoa::~Pessoa()
