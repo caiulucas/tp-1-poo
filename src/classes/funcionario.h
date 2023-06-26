@@ -15,15 +15,9 @@
     double salario_hora;
 
   public:
-    Funcionario(string nome_usuario = "", string senha = "", string tipo = "", string funcao = "", double salario_hora = 0.0);
+    Funcionario(string tipo = "", string funcao = "", double salario_hora = 0.0);
 
     virtual ~Funcionario();
-
-    void set_nome_usuario(string nome_usuario);
-    string get_nome_usuario() const;
-
-    void set_senha(string senha);
-    string get_senha() const;
 
     void set_tipo(string tipo);
     string get_tipo() const;

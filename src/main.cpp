@@ -1,12 +1,15 @@
 #include <iostream>
-#include "classes/pessoa.h"
+#include "classes/funcionario.h"
+#include "classes/chefe.h"
 
 using namespace std;
 
 int main()
 {
-  Pessoa *pessoa = new Pessoa("vini");
+  Funcionario *funcionario = new Funcionario("Funcionario", "Funcionario", 0.0);
+  Chefe *chefe = new Chefe(0.0);
 
-  cout << pessoa->getNome();
+  cout << funcionario->get_funcao() << endl;
+  cout << chefe->get_salario_fixo() << endl;
   return EXIT_SUCCESS;
 }
