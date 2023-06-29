@@ -4,12 +4,12 @@
 Supervisor::Supervisor(string nome, string nomeUsuario, string senha, string funcao, double salario)
     : Funcionario(nome, nomeUsuario, senha, funcao, salario) {}
 
-vector<Vendedor> Supervisor::getVendedores() const
+vector<Vendedor*> Supervisor::getVendedores() const
 {
   return this->vendedores;
 }
 
-void Supervisor::addVendedor(Vendedor vendedor)
+void Supervisor::addVendedor(Vendedor *vendedor)
 {
   this->vendedores.push_back(vendedor);
 }
@@ -18,9 +18,9 @@ vector<Venda *> Supervisor::getVendas() const
 {
   vector<Venda *> vendas;
 
-  for (Vendedor v : this->vendedores)
+  for (Vendedor *v : this->vendedores)
   {
-    vector<Venda *> vendasVendedor = v.getVendas();
+    vector<Venda *> vendasVendedor = v->getVendas();
 
     for (Venda *venda : vendasVendedor)
       vendas.push_back(venda);
@@ -33,8 +33,8 @@ double Supervisor::getBonificacao(Data data) const
 {
   double bonificacao = 0.0;
 
-  for (Vendedor v : this->vendedores)
-    bonificacao += v.getValorVendas(data) * 0.01;
+  for (Vendedor *v : this->vendedores)
+    bonificacao += v->getValorVendas(data) * 0.01;
 
   return bonificacao;
 }

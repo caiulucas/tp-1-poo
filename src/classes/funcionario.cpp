@@ -65,26 +65,6 @@ double Funcionario::getHorasSemana(Data data) const
   return horas;
 }
 
-double Funcionario::getHorasMes(Data data) const
-{
-  int mes = data.getMes();
-  int ano = data.getAno();
-  double horas = 0.0;
-
-  for (Ponto p : this->pontos)
-  {
-    int mesPonto = p.getData().getMes();
-    int anoPonto = p.getData().getAno();
-
-    if (mes == mesPonto && ano == anoPonto)
-    {
-      horas += p.getHorasTrabalhadas();
-    }
-  }
-
-  return horas;
-}
-
 vector<Ponto> Funcionario::getPontos() const
 {
   return this->pontos;

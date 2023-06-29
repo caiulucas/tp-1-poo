@@ -14,7 +14,7 @@ class Supervisor : public Funcionario
 {
 
 private:
-  vector<Vendedor> vendedores;
+  vector<Vendedor*> vendedores;
 
 public:
   Supervisor(string nome = "", string nomeUsuario = "", string senha = "", string funcao = "", double = 0.0);
@@ -25,8 +25,8 @@ public:
   double getSalarioFinal(Data data) const override;
   vector<Venda*> getVendas() const override;
 
-  vector<Vendedor> getVendedores() const;
-  void addVendedor(Vendedor vendedor);
+  vector<Vendedor*> getVendedores() const;
+  void addVendedor(Vendedor *vendedor);
 
   friend ostream &operator<<(ostream &out, const Supervisor &supervisor);
 };

@@ -18,6 +18,17 @@ void Chefe::setSalario(double salario)
   this->salario = salario;
 }
 
+Funcionario *Chefe::getFuncionarioPorUsuario(string nomeUsuario)
+{
+  for (Funcionario *f : this->getFuncionarios())
+  {
+    if (f->getNomeUsuario() == nomeUsuario)
+      return f;
+  }
+
+  return nullptr;
+};
+
 vector<Funcionario *> Chefe::getFuncionarios() const
 {
   return this->funcionarios;

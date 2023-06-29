@@ -35,7 +35,6 @@ public:
   void addPonto(Ponto ponto);
 
   double getHorasSemana(Data data) const;
-  double getHorasMes(Data data) const;
 
   virtual vector<Venda*> getVendas() const = 0;
   virtual double getSalarioMes(Data data) const = 0;
