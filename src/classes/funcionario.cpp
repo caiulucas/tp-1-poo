@@ -47,38 +47,20 @@ double Funcionario::getSalarioHora() const
   return this->salarioHora;
 }
 
-double Funcionario::getHorasSemana(Data data) const
-{
-  int semana = data.getSemana();
-  double horas = 0.0;
-
-  for (Ponto p : this->pontos)
-  {
-    int semanaPonto = p.getData().getSemana();
-
-    if (semana == semanaPonto)
-    {
-      horas += p.getHorasTrabalhadas();
-    }
-  }
-
-  return horas;
-}
-
-vector<Ponto> Funcionario::getPontos() const
+vector<Ponto*> Funcionario::getPontos() const
 {
   return this->pontos;
 }
 
-void Funcionario::addPonto(Ponto ponto)
+void Funcionario::addPonto(Ponto *ponto)
 {
   this->pontos.push_back(ponto);
 }
 
 ostream &operator<<(ostream &out, const Funcionario &obj)
 {
-  out << "\t\x1b[1mNome:\x1b[0m" << obj.getNome() << endl
-      << "\t\x1b[1mUsuário:\x1b[0m " << obj.getNomeUsuario() << endl
-      << "\t\x1b[1mFunção:\x1b[0m " << obj.getFuncao();
+  out << "\x1b[1mNome:\x1b[0m" << obj.getNome() << endl
+      << "\x1b[1mUsuário:\x1b[0m " << obj.getNomeUsuario() << endl
+      << "\x1b[1mFunção:\x1b[0m " << obj.getFuncao();
   return out;
 }

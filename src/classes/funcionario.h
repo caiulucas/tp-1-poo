@@ -15,7 +15,7 @@ private:
   string tipo;
   string funcao;
   double salarioHora;
-  vector<Ponto> pontos;
+  vector<Ponto *> pontos;
 
 public:
   Funcionario(string nome = "", string usuario = "", string senha = "", string funcao = "", double salarioHora = 0.0);
@@ -31,12 +31,10 @@ public:
   double getSalarioHora() const;
   void setSalarioHora(double salario_hora);
 
-  vector<Ponto> getPontos() const;
-  void addPonto(Ponto ponto);
+  vector<Ponto *> getPontos() const;
+  void addPonto(Ponto *ponto);
 
-  double getHorasSemana(Data data) const;
-
-  virtual vector<Venda*> getVendas() const = 0;
+  virtual vector<Venda *> getVendas() const = 0;
   virtual double getSalarioMes(Data data) const = 0;
   virtual double getBonificacao(Data data) const = 0;
   virtual double getSalarioFinal(Data data) const = 0;

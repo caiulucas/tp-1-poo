@@ -28,8 +28,8 @@ void Venda::setData(Data data)
 
 ostream &operator<<(ostream &os, const Venda &venda)
 {
-  os << "\t\x1b[1mValor:\x1b[0m " << venda.getValor() << endl
-     << "\t\x1b[1mData:\x1b[0m " << venda.getData() << endl;
+  os << "\x1b[1mValor:\x1b[0m " << venda.getValor() << endl
+     << "\x1b[1mData:\x1b[0m " << venda.getData() << endl;
 
   return os;
 }

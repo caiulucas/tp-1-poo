@@ -56,15 +56,15 @@ void MenuFuncionario::addPonto()
 
   Horario *horarioSaida = new Horario(hora, minuto);
 
-  if (horarioSaida->getHorarioEmMinutos() - horarioInicio->getHorarioEmMinutos() > MAX_HORAS_DIA)
+  if ((horarioSaida->getHorarioEmMinutos() - horarioInicio->getHorarioEmMinutos()) / 60 > MAX_HORAS_DIA)
   {
     cout << "\x1b[1m\x1b[31mHorário de saída não pode ser maior que 10 horas após o horário de entrada!\x1b[0m" << endl;
     return;
   }
-  
+
   Ponto *ponto = new Ponto(*data, *horarioInicio, *horarioSaida);
 
-  this->funcionario->addPonto(*ponto);
+  this->funcionario->addPonto(ponto);
   cout << "\x1B[2J\x1B[H";
 }
 
@@ -182,9 +182,9 @@ void MenuFuncionario::menu()
     case 4:
       if (typeid(*this->funcionario) == typeid(Vendedor))
         this->listarVendas();
-      else
-        return;
       break;
+    case 5:
+      return;
     default:
       cout << "\x1b[1m\x1b[31mOpção inválida!\x1b[0m" << endl;
       break;

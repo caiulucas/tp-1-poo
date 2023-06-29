@@ -9,10 +9,11 @@ void Menu::menuPrincipal()
   while (true)
   {
     cout << "\x1B[2J\x1B[H";
-    cout << "Bem vindo ao sistema de gerenciamento de funcionarios" << endl;
-    cout << "Escolha uma opcao:" << endl;
-    cout << "1. Login" << endl;
-    cout << "2. Sair" << endl;
+    cout << "\x1b[1m\x1b[34mBem vindo ao sistema de gerenciamento de funcionarios\x1b[0m" << endl;
+    cout << "\x1b[1m\x1b[34mEscolha uma opcao:\x1b[0m" << endl;
+    cout << "\x1b[1m\x1b[34m1.\x1b[0m Login" << endl;
+    cout << "\x1b[1m\x1b[34m2.\x1b[0m Sair" << endl;
+    cout << "\x1b[1m\x1b[34mOpção:\x1b[0m ";
     cin >> opcao;
 
     string nomeUsuario, senha;

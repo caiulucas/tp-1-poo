@@ -36,14 +36,14 @@ double Vendedor::getSalarioMes(Data data) const
   int ano = data.getAno();
   double horas = 0.0;
 
-  for (Ponto p : this->getPontos())
+  for (Ponto *p : this->getPontos())
   {
-    int mesPonto = p.getData().getMes();
-    int anoPonto = p.getData().getAno();
+    int mesPonto = p->getData().getMes();
+    int anoPonto = p->getData().getAno();
 
     if (mes == mesPonto && ano == anoPonto)
     {
-      double horasDia = p.getHorasTrabalhadas();
+      double horasDia = p->getHorasTrabalhadas();
 
       if (horasDia > MAX_HORAS_NORMAIS)
         horas += MAX_HORAS_NORMAIS + (horasDia - MAX_HORAS_NORMAIS) * HORA_EXTRA_VENDEDOR;
@@ -70,11 +70,11 @@ double Vendedor::getSalarioFinal(Data data) const
 
 ostream &operator<<(ostream &out, const Vendedor &obj)
 {
-  out << "\t\x1b[1mNome:\x1b[0m" << obj.getNome() << endl
-      << "\t\x1b[1mUsuário:\x1b[0m " << obj.getNomeUsuario() << endl
-      << "\t\x1b[1mFunção:\x1b[0m " << obj.getFuncao()
-      << "\t\x1b[1mTipo:\x1b[0m Vendedor"
-      << "\t\x1b[1mSalário por hora:\x1b[0m " << obj.getSalarioHora();
+  out << "\x1b[1mNome:\x1b[0m" << obj.getNome() << endl
+      << "\x1b[1mUsuário:\x1b[0m " << obj.getNomeUsuario() << endl
+      << "\x1b[1mFunção:\x1b[0m " << obj.getFuncao()
+      << "\x1b[1mTipo:\x1b[0m Vendedor"
+      << "\x1b[1mSalário por hora:\x1b[0m " << obj.getSalarioHora();
 
   return out;
 }

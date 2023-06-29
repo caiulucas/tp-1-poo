@@ -52,6 +52,6 @@ double Ponto::getHorasTrabalhadas()
 
 std::ostream &operator<<(std::ostream &os, const Ponto &ponto)
 {
-  os << ponto.data << " " << ponto.entrada << " " << ponto.saida;
+  os << ponto.data << "Entrada: " << ponto.entrada << "| Saída: " << ponto.saida;
   return os;
 }

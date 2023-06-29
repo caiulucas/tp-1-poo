@@ -55,10 +55,17 @@ void MenuChefe::addFuncionario()
 
   if (tipo == "Vendedor")
   {
-    Supervisor *supervisor = (Supervisor *)chefe->getFuncionarioPorUsuario(usuarioSupervisor);
+    Supervisor *supervisor = dynamic_cast<Supervisor *>(chefe->getFuncionarioPorUsuario(usuarioSupervisor));
+
+    if (supervisor == nullptr)
+    {
+      cout << "\x1B[2J\x1B[H";
+      cout << "\x1b[1m\x1b[31mSupervisor não encontrado!\x1b[0m" << endl;
+      return;
+    }
 
     funcionario = new Vendedor(nome, nomeUsuario, senha, funcao, salario);
-    supervisor->addVendedor((Vendedor *)funcionario);
+    supervisor->addVendedor(dynamic_cast<Vendedor *>(funcionario));
   }
   else
     funcionario = new Supervisor(nome, nomeUsuario, senha, funcao, salario);
@@ -73,14 +80,94 @@ void MenuChefe::listarFuncionarios()
   cout << "\x1b[1m\x1b[34mFuncionários:\x1b[0m" << endl;
 
   for (auto funcionario : this->chefe->getFuncionarios())
-    cout << *funcionario << endl;
+    cout << *funcionario << endl << endl;
+}
+
+void MenuChefe::checarPontoFuncionario()
+{
+  string nomeUsuario;
+  int mes, ano;
+
+  cout << "\x1B[2J\x1B[H";
+  cout << "\x1b[1m\x1b[34mNome de usuário:\x1b[0m ";
+  cin >> nomeUsuario;
+
+  Funcionario *funcionario = this->chefe->getFuncionarioPorUsuario(nomeUsuario);
+
+  if (funcionario == nullptr)
+  {
+    cout << "\x1b[1m\x1b[31mFuncionário não encontrado!\x1b[0m" << endl;
+    return;
+  }
+
+  while (mes < 1 || mes > 12)
+  {
+    cout << "\x1b[1m\x1b[34mMês:\x1b[0m ";
+    cin >> mes;
+
+    if (mes < 1 || mes > 12)
+      cout << "\x1b[1m\x1b[31mMês inválido!\x1b[0m" << endl;
+  }
+
+  while (ano < 1900 || ano > 2100)
+  {
+    cout << "\x1b[1m\x1b[34mAno:\x1b[0m ";
+    cin >> ano;
+
+    if (ano < 1900 || ano > 2100)
+      cout << "\x1b[1m\x1b[31mAno inválido!\x1b[0m" << endl;
+  }
+
+  cout << "\x1b[1m\x1b[34mPonto do funcionário:\x1b[0m" << endl;
+  for (Ponto *ponto : funcionario->getPontos())
+    if (ponto->getData().getMes() == mes && ponto->getData().getAno() == ano)
+      cout << *ponto << endl;
+}
+
+void MenuChefe::calcularSalarioFuncionario()
+{
+  string nomeUsuario;
+  int mes, ano;
+
+  cout << "\x1B[2J\x1B[H";
+  cout << "\x1b[1m\x1b[34mNome de usuário:\x1b[0m ";
+  cin >> nomeUsuario;
+
+  Funcionario *funcionario = this->chefe->getFuncionarioPorUsuario(nomeUsuario);
+
+  if (funcionario == nullptr)
+  {
+    cout << "\x1b[1m\x1b[31mFuncionário não encontrado!\x1b[0m" << endl;
+    return;
+  }
+
+  while (true)
+  {
+    cout << "\x1b[1m\x1b[34mData (MM YYYY):\x1b[0m ";
+    cin >> mes >> ano;
+
+    if (mes < 1 || mes > 12 || ano < 0)
+      cout << "\x1b[1m\x1b[31mData inválida!\x1b[0m" << endl;
+    else
+      break;
+  }
+
+  Data *data = new Data(1, mes, ano);
+
+  cout << "\x1B[2J\x1B[H";
+  cout << "\x1b[1m\x1b[34mSalário:\x1b[0m "
+       << funcionario->getSalarioMes(*data) << endl;
+  cout << "\x1b[1m\x1b[34mBônus:\x1b[0m "
+       << funcionario->getBonificacao(*data) << endl;
+  cout << "\x1b[1m\x1b[34mSalário final:\x1b[0m "
+       << funcionario->getSalarioFinal(*data) << endl;
 }
 
 void MenuChefe::menu()
 {
   int opcao;
 
-  do
+  while (true)
   {
     cout << "\x1B[2J\x1B[H"
          << "\x1b[1m\x1b[34mMenu do Chefe:\x1b[0m" << endl
@@ -99,13 +186,21 @@ void MenuChefe::menu()
       break;
     case 2:
       this->listarFuncionarios();
-      cout << "\x1b[1m\x1b[34mPressione ENTER para continuar...\x1b[0m" << endl;
       break;
+    case 3:
+      this->checarPontoFuncionario();
+      break;
+    case 4:
+      this->calcularSalarioFuncionario();
+      break;
+    case 5:
+      return;
     default:
       cout << "\x1b[1m\x1b[31mOpção inválida!\x1b[0m" << endl;
       break;
     }
+    cout << "\x1b[1m\x1b[34mPressione ENTER para continuar...\x1b[0m" << endl;
     cin.ignore();
-    
-  } while (opcao != 5);
+    cin.get();
+  }
 }
