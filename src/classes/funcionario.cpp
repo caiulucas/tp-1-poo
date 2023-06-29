@@ -65,7 +65,7 @@ double Funcionario::getHorasSemana(Data data) const
   return horas;
 }
 
-double Funcionario::getHorasMes(Data data)
+double Funcionario::getHorasMes(Data data) const
 {
   int mes = data.getMes();
   int ano = data.getAno();
@@ -97,10 +97,8 @@ void Funcionario::addPonto(Ponto ponto)
 
 ostream &operator<<(ostream &out, const Funcionario &obj)
 {
-  out << "\x1b[1mNome:\x1b[0m" << obj.getNome() << endl
-      << "\t"
-      << "\x1b[1mUsuário:\x1b[0m " << obj.getNomeUsuario() << endl
-      << "\t"
-      << "\x1b[1mFunção:\x1b[0m " << obj.getFuncao();
+  out << "\t\x1b[1mNome:\x1b[0m" << obj.getNome() << endl
+      << "\t\x1b[1mUsuário:\x1b[0m " << obj.getNomeUsuario() << endl
+      << "\t\x1b[1mFunção:\x1b[0m " << obj.getFuncao();
   return out;
 }

@@ -6,19 +6,21 @@
 #include "funcionario.h"
 #include "venda.h"
 
+#define HORA_EXTRA_VENDEDOR 2.0
+
 using namespace std;
 
 class Vendedor : public Funcionario
 {
 
 private:
-  vector<Venda> vendas;
+  vector<Venda*> vendas;
 
 public:
   Vendedor(string nome = "", string nomeUsuario = "", string senha = "", string funcao = "", double = 0.0);
 
-  vector<Venda> getVendas() const override;
-  void addVenda(Venda venda);
+  vector<Venda*> getVendas() const override;
+  void addVenda(Venda *venda) override;
 
   double getSalarioMes(Data data) const override;
   double getBonificacao(Data data) const override;

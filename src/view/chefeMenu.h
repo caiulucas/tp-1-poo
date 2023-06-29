@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../classes/chefe.h"
 
 using namespace std;

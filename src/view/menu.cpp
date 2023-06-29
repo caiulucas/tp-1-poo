@@ -4,7 +4,7 @@
 
 void Menu::menuPrincipal()
 {
-  Chefe *chefe = new Chefe(10000) ;
+  Chefe *chefe = new Chefe(10000);
   int opcao;
   do
   {
@@ -26,13 +26,15 @@ void Menu::menuPrincipal()
       if (nomeUsuario == "admin" && senha == "admin")
       {
         cout << "\x1B[2J\x1B[H";
-        ChefeMenu *chefeMenu = new ChefeMenu(chefe); 
+        ChefeMenu *chefeMenu = new ChefeMenu(chefe);
         chefeMenu->menu();
       }
       else
       {
-        for(auto f : chefe->getFuncionarios()) {
-          if(f->getNomeUsuario() == nomeUsuario && f->getSenha() == senha) {
+        for (auto f : chefe->getFuncionarios())
+        {
+          if (f->getNomeUsuario() == nomeUsuario && f->getSenha() == senha)
+          {
             cout << "\x1B[2J\x1B[H";
             MenuFuncionario *menuFuncionario = new MenuFuncionario(f);
             menuFuncionario->menu();

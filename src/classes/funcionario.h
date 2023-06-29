@@ -35,12 +35,13 @@ public:
   void addPonto(Ponto ponto);
 
   double getHorasSemana(Data data) const;
-  double getHorasMes(Data data);
+  double getHorasMes(Data data) const;
 
-  virtual vector<Venda> getVendas() const = 0;
+  virtual vector<Venda*> getVendas() const = 0;
   virtual double getSalarioMes(Data data) const = 0;
   virtual double getBonificacao(Data data) const = 0;
   virtual double getSalarioFinal(Data data) const = 0;
+  virtual void addVenda(Venda *venda) = 0;
 
   friend ostream &operator<<(ostream &out, const Funcionario &obj);
 };

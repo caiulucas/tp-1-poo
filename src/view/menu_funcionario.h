@@ -12,6 +12,7 @@ private:
 
   void addPonto();
   void mostrarSalario();
+  void addVenda();
   void listarVendas();
 
 public:
