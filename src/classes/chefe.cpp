@@ -18,12 +18,12 @@ void Chefe::setSalario(double salario)
   this->salario = salario;
 }
 
-vector<Funcionario> Chefe::getFuncionarios() const
+vector<Funcionario *> Chefe::getFuncionarios() const
 {
   return this->funcionarios;
 }
 
-void Chefe::addFuncionario(Funcionario funcionario)
+void Chefe::addFuncionario(Funcionario *funcionario)
 {
   this->funcionarios.push_back(funcionario);
 }

@@ -4,12 +4,19 @@
 #include "chefeMenu.h"
 #include "../classes/funcionario.h"
 #include "../classes/vendedor.h"
+#include "../classes/supervisor.h"
 
 using namespace std;
 
-ChefeMenu::ChefeMenu()
+ChefeMenu::ChefeMenu(Chefe *chefe)
 {
-  this->chefe = Chefe();
+  this->chefe = chefe;
+}
+
+ChefeMenu::~ChefeMenu()
+{
+  for (auto funcionario : this->chefe->getFuncionarios())
+    delete funcionario;
 }
 
 void ChefeMenu::addFuncionario()
@@ -18,23 +25,33 @@ void ChefeMenu::addFuncionario()
   double salario;
 
   cout << "\x1b[1m\x1b[34mNome:\x1b[0m ";
-  cin >> nome;
+  getline(cin >> ws, nome);
   cout << "\x1b[1m\x1b[34mNome de usuário:\x1b[0m ";
   cin >> nomeUsuario;
   cout << "\x1b[1m\x1b[34mSenha:\x1b[0m ";
   cin >> senha;
-  cout << "\x1b[1m\x1b[34mTipo:\x1b[0m ";
-  cin >> tipo;
+
+  while (tipo != "Vendedor" && tipo != "Supervisor")
+  {
+    cout << "\x1b[1m\x1b[34mTipo:\x1b[0m ";
+    cin >> tipo;
+
+    if (tipo != "Vendedor" && tipo != "Supervisor")
+      cout << "\x1b[1m\x1b[31mTipo inválido!\x1b[0m" << endl;
+  }
+
   cout << "\x1b[1m\x1b[34mFunção:\x1b[0m ";
-  cin >> funcao;
+  getline(cin >> ws, funcao);
   cout << "\x1b[1m\x1b[34mSalário:\x1b[0m ";
   cin >> salario;
 
   Funcionario *funcionario;
   if (tipo == "Vendedor")
     funcionario = new Vendedor(nome, nomeUsuario, senha, funcao, salario);
+  else
+    funcionario = new Supervisor(nome, nomeUsuario, senha, funcao, salario);
 
-  this->chefe.addFuncionario(*funcionario);
+  this->chefe->addFuncionario(funcionario);
   cout << "\x1B[2J\x1B[H";
 }
 
@@ -43,8 +60,8 @@ void ChefeMenu::listarFuncionarios()
   cout << "\x1B[2J\x1B[H";
   cout << "\x1b[1m\x1b[34mFuncionários:\x1b[0m" << endl;
 
-  for (Funcionario funcionario : this->chefe.getFuncionarios())
-    cout << funcionario << endl;
+  for (auto funcionario : this->chefe->getFuncionarios())
+    cout << *funcionario << endl;
 }
 
 void ChefeMenu::menu()
@@ -53,13 +70,13 @@ void ChefeMenu::menu()
 
   do
   {
-    cout << "\x1b[1m\x1b[34mMenu do Chefe:\x1b[0m" << endl;
-    cout << "\x1b[1m\x1b[34m1.\x1b[0m Adicionar funcionário" << endl;
-    cout << "\x1b[1m\x1b[34m2.\x1b[0m Listar funcionários" << endl;
-    cout << "\x1b[1m\x1b[34m3.\x1b[0m Checar ponto de funcionário" << endl;
-    cout << "\x1b[1m\x1b[34m4.\x1b[0m Calcular salário de funcionário" << endl;
-    cout << "\x1b[1m\x1b[34m5.\x1b[0m Sair" << endl;
-    cout << "\x1b[1m\x1b[34mOpção:\x1b[0m ";
+    cout << "\x1b[1m\x1b[34mMenu do Chefe:\x1b[0m" << endl
+         << "\x1b[1m\x1b[34m1.\x1b[0m Adicionar funcionário" << endl
+         << "\x1b[1m\x1b[34m2.\x1b[0m Listar funcionários" << endl
+         << "\x1b[1m\x1b[34m3.\x1b[0m Checar ponto de funcionário" << endl
+         << "\x1b[1m\x1b[34m4.\x1b[0m Calcular salário de funcionário" << endl
+         << "\x1b[1m\x1b[34m5.\x1b[0m Sair" << endl
+         << "\x1b[1m\x1b[34mOpção:\x1b[0m ";
     cin >> opcao;
 
     switch (opcao)
@@ -76,5 +93,5 @@ void ChefeMenu::menu()
       cout << "\x1b[1m\x1b[31mOpção inválida!\x1b[0m" << endl;
       break;
     }
-  } while (opcao != 3);
+  } while (opcao != 5);
 }

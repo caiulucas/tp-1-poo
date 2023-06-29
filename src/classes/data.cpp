@@ -2,15 +2,6 @@
 
 Data::Data(int dia, int mes, int ano)
 {
-  if (dia < 1 || dia > 31)
-    throw std::invalid_argument("Dia invalido");
-
-  if (mes < 1 || mes > 12)
-    throw std::invalid_argument("Mes invalido");
-
-  if (ano < 2000)
-    throw std::invalid_argument("Ano invalido");
-
   this->dia = dia;
   this->mes = mes;
   this->ano = ano;

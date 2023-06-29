@@ -5,7 +5,7 @@ using namespace std;
 class ChefeMenu
 {
 private:
-  Chefe chefe;
+  Chefe *chefe;
 
   void addFuncionario();
   void listarFuncionarios();
@@ -13,7 +13,9 @@ private:
   void calcularSalarioFuncionario();
 
 public:
-  ChefeMenu();
+  ChefeMenu(Chefe *chefe);
+
+  ~ChefeMenu();
 
   void menu();
 };

@@ -15,8 +15,6 @@ private:
 public:
   Venda(double valor, Data data);
 
-  virtual ~Venda();
-
   double getValor() const;
   void setValor(double valor);
 

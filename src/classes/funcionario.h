@@ -5,6 +5,7 @@
 #include "pessoa.h"
 #include "data.h"
 #include "ponto.h"
+#include "venda.h"
 
 using namespace std;
 
@@ -33,8 +34,13 @@ public:
   vector<Ponto> getPontos() const;
   void addPonto(Ponto ponto);
 
-  double getHorasSemana(Data data);
+  double getHorasSemana(Data data) const;
   double getHorasMes(Data data);
+
+  virtual vector<Venda> getVendas() const = 0;
+  virtual double getSalarioMes(Data data) const = 0;
+  virtual double getBonificacao(Data data) const = 0;
+  virtual double getSalarioFinal(Data data) const = 0;
 
   friend ostream &operator<<(ostream &out, const Funcionario &obj);
 };
