@@ -15,9 +15,8 @@ private:
   vector<Venda> vendas;
 
 public:
-  Vendedor(string nome = "", string nome_usuario = "", string senha = "", string tipo = "", string funcao = "", double = 0.0);
-  virtual ~Vendedor();
+  Vendedor(string nome = "", string nomeUsuario = "", string senha = "", string funcao = "", double = 0.0);
 
-  vector<Venda> get_vendas() const;
-  void set_vendas(vector<Venda> vendas);
+  vector<Venda> getVendas() const;
+  void setVendas(vector<Venda> vendas);
 };

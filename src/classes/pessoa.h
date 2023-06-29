@@ -9,22 +9,22 @@ class Pessoa
 {
 private:
   string nome;
-  string nome_usuario;
+  string nomeUsuario;
   string senha;
 
 public:
-  Pessoa(string nome = "", string nome_usuario = "", string senha = "");
+  Pessoa(string nome = "", string nomeUsuario = "", string senha = "");
 
   virtual ~Pessoa();
 
-  string get_nome() const;
-  void set_nome(string nome);
+  string getNome() const;
+  void setNome(string nome);
 
-  void set_nome_usuario(string nome_usuario);
-  string get_nome_usuario() const;
+  void setNomeUsuario(string nomeUsuario);
+  string getNomeUsuario() const;
 
-  void set_senha(string senha);
-  string get_senha() const;
+  void setSenha(string senha);
+  string getSenha() const;
 
   friend ostream &operator<<(ostream, const Pessoa &);
 };

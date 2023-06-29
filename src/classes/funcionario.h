@@ -1,39 +1,40 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include "pessoa.h"
+#include "data.h"
+#include "ponto.h"
 
 using namespace std;
 
 class Funcionario : public Pessoa
 {
 private:
-  string nome_usuario;
-  string senha;
   string tipo;
   string funcao;
-  double salario_hora;
+  double salarioHora;
+  vector<Ponto> pontos;
 
 public:
-  Funcionario(string nome = "", string nome_usuario = "", string senha = "", string tipo = "", string funcao = "", double salario_hora = 0.0);
+  Funcionario(string nome = "", string usuario = "", string senha = "", string funcao = "", double salarioHora = 0.0);
 
   virtual ~Funcionario();
 
-  void set_tipo(string tipo);
-  string get_tipo() const;
+  string getTipo() const;
+  void setTipo(string tipo);
 
-  void set_funcao(string funcao);
-  string get_funcao() const;
+  string getFuncao() const;
+  void setFuncao(string funcao);
 
-  void set_salario_hora(double salario_hora);
-  double get_salario_hora() const;
+  double getSalarioHora() const;
+  void setSalarioHora(double salario_hora);
 
-  double calcular_horas_semana();
-  double calcular_horas_mes();
+  vector<Ponto> getPontos() const;
+  void addPonto(Ponto ponto);
 
-  virtual double calcular_salario();
-  virtual void mostrar_salario();
-  virtual void mostrar_vendas();
+  double getHorasSemana(Data data);
+  double getHorasMes(Data data);
 
   friend ostream &operator<<(ostream &out, const Funcionario &obj);
 };

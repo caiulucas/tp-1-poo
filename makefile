@@ -5,7 +5,7 @@ SRCDIR := src
 BUILDDIR := build
 
 TARGET := exe
-SOURCES := $(wildcard $(SRCDIR)/*.cpp $(SRCDIR)/classes/*.cpp)
+SOURCES := $(wildcard $(SRCDIR)/*.cpp $(SRCDIR)/*/*.cpp)
 OBJECTS := $(patsubst $(SRCDIR)/%.cpp,$(BUILDDIR)/%.o,$(SOURCES))
 
 .PHONY: all clean run

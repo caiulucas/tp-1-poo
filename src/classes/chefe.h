@@ -8,14 +8,18 @@ using namespace std;
 
 class Chefe : public Pessoa
 {
-  double salario_fixo;
+  double salario;
   vector<Funcionario> funcionarios;
 
 public:
-  Chefe(double salario_fixo = 0.0);
+  Chefe(double salario = 0.0);
 
-  virtual ~Chefe();
+  double getSalario() const;
+  void setSalario(double salario);
 
-  double get_salario_fixo() const;
-  void set_salario_fixo(double salario_fixo);
+  vector<Funcionario> getFuncionarios() const;
+  void addFuncionario(Funcionario funcionario);
+  void removeFuncionario(string nome);
+
+  friend ostream &operator<<(ostream &out, const Chefe &obj);
 };

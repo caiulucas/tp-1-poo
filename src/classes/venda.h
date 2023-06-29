@@ -17,11 +17,11 @@ public:
 
   virtual ~Venda();
 
-  double get_valor() const;
-  void set_valor(double valor);
+  double getValor() const;
+  void setValor(double valor);
 
-  Data get_data() const;
-  void set_data(Data data);
+  Data getData() const;
+  void setData(Data data);
 
   friend ostream &operator<<(ostream &os, const Venda &venda);
 };

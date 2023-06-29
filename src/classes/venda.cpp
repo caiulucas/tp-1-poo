@@ -10,22 +10,22 @@ Venda::~Venda()
 {
 }
 
-double Venda::get_valor() const
+double Venda::getValor() const
 {
   return this->valor;
 }
 
-void Venda::set_valor(double valor)
+void Venda::setValor(double valor)
 {
   this->valor = valor;
 }
 
-Data Venda::get_data() const
+Data Venda::getData() const
 {
   return this->data;
 }
 
-void Venda::set_data(Data data)
+void Venda::setData(Data data)
 {
   this->data = data;
 }

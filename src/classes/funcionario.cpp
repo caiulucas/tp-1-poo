@@ -4,79 +4,105 @@
 
 using namespace std;
 
-Funcionario::Funcionario(string nome, string nome_usuario, string senha, string tipo, string funcao, double salario_hora)
-    : Pessoa(nome, nome_usuario, senha)
+Funcionario::Funcionario(string nome, string usuario, string senha,
+                         string funcao, double salarioHora)
+    : Pessoa(nome, usuario, senha)
 {
   this->tipo = tipo;
   this->funcao = funcao;
-  this->salario_hora = salario_hora;
+  this->salarioHora = salarioHora;
 }
 
 Funcionario::~Funcionario()
 {
 }
 
-void Funcionario::set_tipo(string tipo)
+void Funcionario::setTipo(string tipo)
 {
   this->tipo = tipo;
 }
 
-string Funcionario::get_tipo() const
+string Funcionario::getTipo() const
 {
   return this->tipo;
 }
 
-void Funcionario::set_funcao(string funcao)
+void Funcionario::setFuncao(string funcao)
 {
   this->funcao = funcao;
 }
 
-string Funcionario::get_funcao() const
+string Funcionario::getFuncao() const
 {
   return this->funcao;
 }
 
-void Funcionario::set_salario_hora(double salario_hora)
+void Funcionario::setSalarioHora(double salarioHora)
 {
-  this->salario_hora = salario_hora;
+  this->salarioHora = salarioHora;
 }
 
-double Funcionario::get_salario_hora() const
+double Funcionario::getSalarioHora() const
 {
-  return this->salario_hora;
+  return this->salarioHora;
 }
 
-double Funcionario::calcular_horas_semana()
+double Funcionario::getHorasSemana(Data data)
 {
-  return 0.0;
+  int semana = data.getSemana();
+  double horas = 0.0;
+
+  for (Ponto p : this->pontos)
+  {
+    int semanaPonto = p.getData().getSemana();
+
+    if (semana == semanaPonto)
+    {
+      horas += p.getHorasTrabalhadas();
+    }
+  }
+
+  return horas;
 }
 
-double Funcionario::calcular_horas_mes()
+double Funcionario::getHorasMes(Data data)
 {
-  return 0.0;
+  int mes = data.getMes();
+  int ano = data.getAno();
+  double horas = 0.0;
+
+  for (Ponto p : this->pontos)
+  {
+    int mesPonto = p.getData().getMes();
+    int anoPonto = p.getData().getAno();
+
+    if (mes == mesPonto && ano == anoPonto)
+    {
+      horas += p.getHorasTrabalhadas();
+    }
+  }
+
+  return horas;
 }
 
-double Funcionario::calcular_salario()
+vector<Ponto> Funcionario::getPontos() const
 {
-  return 0.0;
+  return this->pontos;
 }
 
-void Funcionario::mostrar_salario()
+void Funcionario::addPonto(Ponto ponto)
 {
-}
-
-void Funcionario::mostrar_vendas()
-{
+  this->pontos.push_back(ponto);
 }
 
 ostream &operator<<(ostream &out, const Funcionario &obj)
 {
-  out << "\x1b[1m\x1b[34m" << obj.get_nome() << "\x1b[0m" << endl
+  out << "\x1b[1m\x1b[34m" << obj.getNome() << "\x1b[0m" << endl
       << "\t"
-      << "\x1b[1mUsuário:\x1b[0m " << obj.get_nome_usuario() << endl
+      << "\x1b[1mUsuário:\x1b[0m " << obj.getNomeUsuario() << endl
       << "\t"
-      << "\x1b[1mTipo de funcionário:\x1b[0m " << obj.get_tipo() << endl
+      << "\x1b[1mTipo de funcionário:\x1b[0m " << obj.getTipo() << endl
       << "\t"
-      << "\x1b[1mFunção:\x1b[0m " << obj.get_funcao();
+      << "\x1b[1mFunção:\x1b[0m " << obj.getFuncao();
   return out;
 }

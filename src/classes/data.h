@@ -16,14 +16,16 @@ public:
   Data(int dia = 1, int mes = 1, int ano = 2023);
   virtual ~Data();
 
-  int get_dia() const;
-  void set_dia(int dia);
+  int getDia() const;
+  void setDia(int dia);
 
-  int get_mes() const;
-  void set_mes(int mes);
+  int getMes() const;
+  void setMes(int mes);
 
-  int get_ano() const;
-  void set_ano(int ano);
+  int getAno() const;
+  void setAno(int ano);
+
+  int getSemana() const;
 
   friend ostream &operator<<(ostream &os, const Data &data);
 };

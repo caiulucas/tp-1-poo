@@ -2,10 +2,10 @@
 
 using namespace std;
 
-Pessoa::Pessoa(string nome, string nome_usuario, string senha)
+Pessoa::Pessoa(string nome, string nomeUsuario, string senha)
 {
   this->nome = nome;
-  this->nome_usuario = nome_usuario;
+  this->nomeUsuario = nomeUsuario;
   this->senha = senha;
 }
 
@@ -13,38 +13,38 @@ Pessoa::~Pessoa()
 {
 }
 
-string Pessoa::get_nome() const
+string Pessoa::getNome() const
 {
   return this->nome;
 }
 
-void Pessoa::set_nome(string nome)
+void Pessoa::setNome(string nome)
 {
   this->nome = nome;
 }
 
-string Pessoa::get_nome_usuario() const
+string Pessoa::getNomeUsuario() const
 {
-  return this->nome_usuario;
+  return this->nomeUsuario;
 }
 
-void Pessoa::set_nome_usuario(string nome_usuario)
+void Pessoa::setNomeUsuario(string nomeUsuario)
 {
-  this->nome_usuario = nome_usuario;
+  this->nomeUsuario = nomeUsuario;
 }
 
-string Pessoa::get_senha() const
+string Pessoa::getSenha() const
 {
   return this->senha;
 }
 
-void Pessoa::set_senha(string senha)
+void Pessoa::setSenha(string senha)
 {
   this->senha = senha;
 }
 
 ostream &operator<<(ostream &out, const Pessoa &obj)
 {
-  out << "\x1b[1m\x1b[34mNome:\x1b[0m " << obj.get_nome();
+  out << "\x1b[1m\x1b[34mNome:\x1b[0m " << obj.getNome();
   return out;
 }
